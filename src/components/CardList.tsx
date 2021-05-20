@@ -1,7 +1,8 @@
-import * as React from 'react';
-import Card from './Card';
+import * as React from 'react'
+import Card from './Card'
+import {IRobot} from "../containers/App"
 
-const CardList = ({ robots }) => {
+const CardList = ({ robots }: {robots: Array<IRobot>}) => {
   return (
     <div>
       {
@@ -13,11 +14,11 @@ const CardList = ({ robots }) => {
               name={robots[i].name}
               email={robots[i].email}
               />
-          );
+          )
         })
       }
     </div>
-  );
+  )
 }
 
-export default CardList;
+export default CardList

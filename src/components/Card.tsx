@@ -1,6 +1,12 @@
-import * as React from 'react';
+import * as React from 'react'
 
-const Card = ({ name, email, id }) => {
+interface CardProps { // could be used with IRobot too
+    name: string,
+    email: string,
+    id: number
+}
+
+const Card: React.SFC<CardProps> = ({ name, email, id }) => {
   return (
     <div className='tc grow bg-light-green br3 pa3 ma2 dib bw2 shadow-5'>
       <img alt='robots' src={`https://robohash.org/${id}?200x200`} />
@@ -9,7 +15,7 @@ const Card = ({ name, email, id }) => {
         <p>{email}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
