@@ -3,9 +3,31 @@ jobs:
   build:
     docker:
       - image: cimg/node:14.10.1 # the primary container, where your job's commands are run
-#        auth:
-#          username: mydockerhub-user
-#          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run: echo "npm installing"
+      - run: npm install
+      - run: CI=true npm run build
+  test:
+    docker:
+      - image: cimg/node:14.10.1
+    steps:
+      - checkout
+      - run: echo "testing stuff"
+      - run: npm install
+      - run: npm test
+  hithere:
+    docker:
+      - image: cimg/node:14.10.1
+    steps:
+      - checkout
+      - run: echo "optional check..."
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - hithere
+      - test:
+          requires:
+            - hithere
